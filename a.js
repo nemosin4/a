@@ -4,7 +4,7 @@ var app = express()
 var path = require("path")
 app.use(express.static(path.join(__dirname, "files/")));
 
-app.get("/message",function(req,res) {
+app.get("/",function(req,res) {
     var add = req.query.chat
     var name = req.query.name
     if (add == undefined) {
@@ -42,14 +42,14 @@ app.get("/message",function(req,res) {
         "<br>" +
         "<table width='500' height='500' bgcolor='silver' border='1'><tbody><tr><td>" +
         data + "</tbody></td></tr>" +
-        "<form method='GET' action='/message' name='chatsend'>" + 
+        "<form method='GET' action='/' name='chatsend'>" + 
         "<font color='red' face='MS Gothic'>Name</font>" +
         "<input type='text' name='name'>" +
         "<br>" +
         "<font color='red' face='MS Gothic'>Chat</font>" +
         "<input name='chat' type='text'>" +
         "<input type='submit'>" +
-        "<a href='/message'><input value='更新' type='button'></a>"+
+        "<a href='/'><input value='更新' type='button'></a>"+
         "</form>" +
         "<br><br>" +
         "<hr>"+
