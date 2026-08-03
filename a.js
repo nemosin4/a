@@ -2,39 +2,20 @@ var express = require("express")
 var fso = require("fs")
 var app = express()
 var path = require("path")
+
 app.use(express.static(path.join(__dirname, "files/")));
 app.use(express.urlencoded({ extended: true }));
+
+
 app.get("/",function(req,res) {
-app.post("/", function(req, res) {
 
-    var add = req.body.chat;
-    var name = req.body.name;
-
-    if (!name || !add) {
-        return res.send("入力してください");
-    }
-
-    var now = new Date();
-
-    fso.appendFile(
-        "chat.txt",
-        `${now.getFullYear()}/${now.getMonth()+1}/${now.getDate()}[${name}]${add}<br>`,
-        "utf8",
-        function(err) {
-
-            if (err) {
-                return res.send("Error");
-            }
-
-            res.redirect("/");
-        }
-    );
-});
     var data
+
     fso.readFile("chat.txt","utf8",function(err,data){
         if (err) {
             res.send("<h1>Error!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</h1>")
         } else {
+
         res.send(
         "<html>" +
         "<head>" +
@@ -70,6 +51,50 @@ app.post("/", function(req, res) {
     })
 
 })
+
+
+app.post("/", function(req,res) {
+
+    var add = req.body.chat
+    var name = req.body.name
+
+    if (add == undefined) {
+
+    } else {
+
+        var now = new Date()
+
+        if (name == "") return
+        if (add == "") return
+
+        fso.appendFile(
+            "chat.txt",
+            `${now.getFullYear() - 26 }/${now.getMonth() + 1}/${now.getDate()}` +
+            "[" + name + "]" +
+            add +
+            "<br>",
+            "utf8",
+            function(err){
+
+                console.log(
+                    new Date() +
+                    "BBSにﾁｬｯﾄされました  [" +
+                    name +
+                    "]  " +
+                    add
+                )
+
+                if(err) {
+                    res.send("<h1>Error!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</h1>")
+                } else {
+                    res.redirect("/")
+                }
+            }
+        )
+    }
+
+})
+
 
 app.listen(3000,"0.0.0.0",function(){
 console.log("started")
