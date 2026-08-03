@@ -34,8 +34,8 @@ app.get("/kyukyuhp",function(req,res){
     res.sendFile(path.join(__dirname,"files/index.htm"))
 })
 app.get("/",function(req,res) {
-    var add = req.query.chat
-    var name = req.query.name
+    var add = req.body.chat
+    var name = req.body.name
     if (add == undefined) {
 
     } else {
@@ -72,7 +72,7 @@ app.get("/",function(req,res) {
         "<br>" +
         "<table width='500' height='500' bgcolor='silver' border='1'><tbody><tr><td>" +
         data + "</tbody></td></tr>" +
-        "<form method='GET' action='/message' name='chatsend'>" + 
+        "<form method='POST' action='/message' name='chatsend'>" + 
         "<font color='red' face='MS Gothic'>Name</font>" +
         "<input type='text' name='name'>" +
         "<br>" +
