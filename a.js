@@ -39,7 +39,6 @@ app.get("/message",function(req,res) {
         "<tr><td>" +
         "<center>" +
         "<h1><font color='red' face='MS Gothic'><i><b>きゅうきゅうのBBS</b></i></h1>" +
-        "<a href='/kyukyuhp'>きゅうきゅうのホームページに戻る</a>" +
         "<br>" +
         "<table width='500' height='500' bgcolor='silver' border='1'><tbody><tr><td>" +
         data + "</tbody></td></tr>" +
