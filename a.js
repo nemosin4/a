@@ -72,14 +72,13 @@ app.get("/",function(req,res) {
         "<br>" +
         "<table width='500' height='500' bgcolor='silver' border='1'><tbody><tr><td>" +
         data + "</tbody></td></tr>" +
-        "<form method='POST' action='/message' name='chatsend'>" + 
+        "<form method='POST' action='/' name='chatsend'>" + 
         "<font color='red' face='MS Gothic'>Name</font>" +
         "<input type='text' name='name'>" +
         "<br>" +
         "<font color='red' face='MS Gothic'>Chat</font>" +
         "<input name='chat' type='text'>" +
         "<input type='submit'>" +
-        "<a href='/message'><input value='更新' type='button'></a>"+
         "</form>" +
         "<br><br>" +
         "<hr>"+
