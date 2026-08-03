@@ -33,7 +33,7 @@ app.get("/kyukyuhp",function(req,res){
     })
     res.sendFile(path.join(__dirname,"files/index.htm"))
 })
-app.get("/message",function(req,res) {
+app.get("/",function(req,res) {
     var add = req.query.chat
     var name = req.query.name
     if (add == undefined) {
