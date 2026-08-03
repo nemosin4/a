@@ -3,37 +3,8 @@ var fso = require("fs")
 var app = express()
 var path = require("path")
 app.use(express.static(path.join(__dirname, "files/")));
-app.get("/kyukyuhp",function(req,res){
-    
-    var lines = new Array()
-    lines = fso.readFileSync('acedip.txt', 'utf-8').trim().split(/\r?\n/);
-    for (var index = 0;index < lines.length;index = index + 1) {
-        if (lines[index] == req.ip) {
-            console.log("来たことある訪問者" + req.ip)
-            res.sendFile(path.join(__dirname,"files/index.htm"))
-            return
-        } else {
-        }
-    }
-    fso.appendFile("acedip.txt",req.ip + "\n",function(err,data){
-        console.log("来た事ない訪問者" + req.ip)
-        if (err) {
-            res.send("<h1>Error!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</h1>")
-        }
-    })
-    fso.readFile(path.join(__dirname,"files/human.htm"),"utf8",function(err,data) {
-        var now = Number(data)
-        now = now + 1
-        now = String(now)
-        fso.writeFile(path.join(__dirname,"files/human.htm"),now,function(err) {
-            if (err) {
-                res.send("<h1>Error!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</h1>")
-            }
-        })
-    })
-    res.sendFile(path.join(__dirname,"files/index.htm"))
-})
-app.get("/",function(req,res) {
+app.use(express.urlencoded({ extended: true }));
+app.post("/",function(req,res) {
     var add = req.body.chat
     var name = req.body.name
     if (add == undefined) {
