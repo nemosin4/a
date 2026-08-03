@@ -1,4 +1,10 @@
 {
+  "name": "sim",
+  "version": "1.0.0",
+  "main": "a.js",
+  "scripts": {
+    "start": "node a.js"
+  },
   "dependencies": {
     "express": "^5.2.1"
   }
